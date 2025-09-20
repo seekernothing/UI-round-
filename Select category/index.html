@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Select a cateogory</h2>
+
+    <div><select id="selectCat">
+        <!-- <option id="i">Select a category</option> -->
+    </select></div>
+
+
+    <div>
+        <ul id="list">
+
+        </ul>
+    </div>
+
+    <script>
+      const categories = ["Fruits", "Vegetables", "Dairy"];
+
+      const products = [
+        { name: "Apple", category: "Fruits" },
+        { name: "Banana", category: "Fruits" },
+        { name: "Carrot", category: "Vegetables" },
+        { name: "Broccoli", category: "Vegetables" },
+        { name: "Milk", category: "Dairy" },
+        { name: "Cheese", category: "Dairy" },
+      ];
+
+      let selectedCategory = document.getElementById("selectCat");
+      let list = document.getElementById("list")
+
+
+
+      categories.forEach((category) => {
+        let option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+
+        selectedCategory.appendChild(option);
+      });
+
+
+      // initial display
+
+      products.forEach(p=>{
+        let listEl = document.createElement("li")
+        listEl.textContent= p.name
+        list.appendChild(listEl)
+      })
+
+
+
+      // event listner
+
+      selectedCategory.addEventListener("change", function(){
+
+        let selected = this.value
+
+       // console.log("clicked")
+
+        displayProducts(selected)
+      })
+
+      function displayProducts(selected){
+
+        list.innerHTML = ""
+
+        if(selected.value==="") return
+
+        let filteredProducts = products.filter(p=>p.category===selected)
+
+        filteredProducts.forEach(p=>{
+            let li = document.createElement("li")
+            li.textContent = p.name
+            list.appendChild(li)
+        })
+      }
+
+
+
+
+    </script>
+  </body>
+</html>
