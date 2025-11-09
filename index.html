@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabs Switcher</title>
+</head>
+<body>
+
+  <h2>Tabs Example</h2>
+
+  <!-- Tab Buttons -->
+  <button class="tabBtn" data-tab="home">Home</button>
+  <button class="tabBtn" data-tab="about">About</button>
+  <button class="tabBtn" data-tab="contact">Contact</button>
+
+  <!-- Tab Content -->
+  <div id="home" class="tabContent">
+    <h3>Home</h3>
+    <p>Welcome to the Home page!</p>
+  </div>
+
+  <div id="about" class="tabContent" style="display: none;">
+    <h3>About</h3>
+    <p>This is the About page content.</p>
+  </div>
+
+  <div id="contact" class="tabContent" style="display: none;">
+    <h3>Contact</h3>
+    <p>You can reach us at contact@example.com</p>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll(".tabBtn");
+    const tabContents = document.querySelectorAll(".tabContent");
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tabId = btn.getAttribute("data-tab");
+
+        // Hide all contents
+        tabContents.forEach(content => {
+          content.style.display = "none";
+        });
+
+        // Show selected tab content
+        document.getElementById(tabId).style.display = "block";
+      });
+    });
+  </script>
+
+</body>
+</html>

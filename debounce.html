@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Debouncing</h2>
+
+    <input type="text" onkeyup="calling()" />
+
+    <script>
+      let counter = 0;
+
+      const apiCall = () => {
+        console.log("api is getting called", counter++);
+      };
+
+      const debounce = (func, delay) => {
+        let timer;
+
+        return function (...args) {
+          let context = this;
+          if (timer) clearTimeout(timer);
+
+          timer = setTimeout(() => {
+            func.apply(context, args);
+          }, delay);
+        };
+      };
+
+      const calling = debounce(apiCall, 300);
+    </script>
+  </body>
+</html>

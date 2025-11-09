@@ -1,0 +1,73 @@
+
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort Products by Price</title>
+
+</head>
+<body>
+
+    <label for="sortOrder">Sort By Price:</label>
+    <select id="sortOrder">
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
+    </select>
+
+    <ul id="productList"></ul>
+
+    <script>
+      
+        let products = [
+            { name: "Laptop", price: 500 },
+            { name: "Mobile", price: 1000 },
+            { name: "Headphones", price: 300 },
+            { name: "Smartwatch", price: 2000 },
+            { name: "Tablet", price: 1500 }
+        ];
+
+
+        let sortOrder = document.getElementById("sortOrder")
+        let productList = document.getElementById("productList")
+
+
+
+
+        function displayProducts(sorted){
+
+              productList.innerHTML = ""
+
+            sorted.forEach(p=>{
+
+              
+                let li = document.createElement("li")
+                li.textContent = `${p.name} --- ${p.price}`
+                productList.appendChild(li)
+            })
+        }
+
+        function filter(){
+            let val = sortOrder.value
+
+            let filtered = [...products].sort((a,b)=>
+        val==="asc" ? a.price-b.price : b.price -a.price
+        )
+
+        displayProducts(filtered)
+        }
+
+
+
+        sortOrder.addEventListener("change", filter)
+
+        displayProducts(products)
+
+
+       
+    </script>
+
+
+
+
+</body>
+</html

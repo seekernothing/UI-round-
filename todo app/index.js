@@ -13,7 +13,7 @@ function addTask(label) {
 
   li.appendChild(span);
 
-  // add button
+  // add  delete  button
 
   let dltBtn = document.createElement("button");
   dltBtn.textContent = "Delete";
